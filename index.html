@@ -1,0 +1,35 @@
+<!-- Сообщаем браузеру как стоит обрабатывать эту страницу -->
+<!DOCTYPE html>
+<!-- Оболочка документа, указываем язык содержимого -->
+<html lang="ru">
+<!-- Заголовок страницы, контейнер для других важных данных (не отображается) -->
+
+<head>
+    <!-- Кодировка страницы -->
+    <meta charset="UTF-8">
+    <!-- Заголовок страницы в браузере -->
+    <title>JavaScript</title>
+    <!-- Адаптив -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="SCSS/style.css">
+    <!-- Logo -->
+    <link rel="shortcut icon" href="" type="image/x-icon">
+</head>
+<!-- Отображаемое тело страницы -->
+
+<body>
+    <div class="wrapper">
+        <!-- <button onclick="alert('Hello')" class="class">tapMe1</button> -->
+        <!-- <button onclick="onClick()" class="class">tapMe2</button> -->
+        <button name="Main" onclick="onClick(this)" class="class1">Нажми</button>
+        <div class="cont">
+            <input name="Main" class="class2">
+            <p class="text-error">Имя занято</p>
+            <button class="btn">Отправить</button>
+        </div>
+    </div>
+</body>
+<script src="./JS/script.js"></script>
+
+</html>

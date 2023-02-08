@@ -1,0 +1,111 @@
+//обнуление css
+@import url(reset.css);
+@import url(header.css);
+@import url(main.css);
+@import url(footer.css);
+//перевод px в rem
+$html-font-size: 16px;
+
+@function stripUnit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@function rem($pxValue) {
+    @return #{stripUnit($pxValue) / stripUnit($html-font-size)}rem;
+}
+
+$maxWidth: 1920;
+$maxWidthContainer: 1520;
+
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+    $addSize: $startSize - $minSize;
+
+    @if $type==1 {
+        // Только если меньше контейнера
+        #{$property}: $startSize + px;
+
+        @media (max-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+        }
+    }
+
+    @else if $type==2 {
+        // Только если больше контейнера
+        #{$property}: $startSize + px;
+
+        @media (min-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+        }
+    }
+
+    @else {
+        // Всегда
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+    }
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-size: rem(32);
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    letter-spacing: 1.5;
+
+}
+
+.wrapper {
+    overflow: clip;
+    min-height: 100%;
+
+}
+
+.cont {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // gap: rem(30);
+}
+
+.class2 {
+    padding: rem(10);
+    text-transform: capitalize;
+    transition: 0.5s;
+
+    &.active {
+        color: red;
+        box-shadow: 0px 1px 10px 3px red;
+    }
+}
+
+
+.text-error {
+    color: red;
+    font-size: rem(14);
+    padding-top: rem(10);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.btn {
+    padding: rem(10);
+    background-color: bisque;
+    font-size: rem(20);
+    border-radius: 5px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    white-space: nowrap;
+    transition: 0.5s;
+
+    &:hover {}
+}
